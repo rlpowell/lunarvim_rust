@@ -1,4 +1,4 @@
-FROM docker.io/library/rust:1.63-bullseye
+FROM docker.io/library/rust:1.73-bullseye
 
 # NB: We actually do run eevrything as root in the container,
 # because it saves useradd steps and so on and also with a rootless
@@ -35,7 +35,7 @@ RUN cargo install cargo-audit
 # Install lunarvim
 RUN cd /tmp/ && wget https://github.com/neovim/neovim/releases/download/v0.8.1/nvim-linux64.deb && apt install -y ./nvim-linux64.deb
 RUN find ~/
-RUN bash -c "LV_BRANCH='release-1.2/neovim-0.8' bash <(curl -s https://raw.githubusercontent.com/LostNeophyte/lunarvim/fix/installer/utils/installer/install.sh)"
+RUN bash -c "LV_BRANCH='release-1.2/neovim-0.8' bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/fc6873809934917b470bff1b072171879899a36b/utils/installer/install.sh)"
 
 # CARGO_HOME is set to /usr/local/cargo, which is both owned by root
 # and not mounted into the container, and we want it mounted in so
